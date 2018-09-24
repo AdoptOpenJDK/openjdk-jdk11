@@ -41,6 +41,16 @@
 #include "jimage.hpp"
 #include "osSupport.hpp"
 
+#if defined(__xlC__) && (__xlC__ >= 0x0d01)
+/*
+ * Version 13.1.3 of xlc seems to have trouble parsing the `__attribute__`
+ * annotation in the generated header file we're about to include. Repeating
+ * the forward declaration (without the braces) here avoids the diagnostic:
+ *   1540-0040 (S) The text "void" is unexpected.  "visibility" may be undeclared or ambiguous.
+ */
+extern "C" JNIEXPORT jobject JNICALL Java_jdk_internal_jimage_NativeImageBuffer_getNativeMap(JNIEnv *, jclass, jstring);
+#endif
+
 #include "jdk_internal_jimage_NativeImageBuffer.h"
 
 
