@@ -37,6 +37,7 @@ ifeq ($(OPENJDK_TARGET_OS), windows)
           jdk.jdwp.agent:include \
           jdk.jdwp.agent:libjdwp/export, \
       LDFLAGS := $(LDFLAGS_JDKLIB), \
+      LDFLAGS_windows := -export:jdwpTransport_OnLoad, \
       LIBS := $(JDKLIB_LIBS), \
   ))
 
